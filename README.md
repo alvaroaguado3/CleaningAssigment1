@@ -77,13 +77,13 @@ File.path() returns the path for each of the files that will be used in the scri
 
 
 # Load Data and Label variables
-## 1.Merges the training and the test sets to create one data set.
-## Load Tables and combine train and test
+ 1.Merges the training and the test sets to create one data set.
+ Load Tables and combine train and test
 X <- rbind(read.table(pathtrainX), read.table(pathtestX)) 
 Y <- rbind(read.table(pathtrainY), read.table(pathtestY)) 
 S <- rbind(read.table(pathtrainS), read.table(pathtestS)) 
 
-## Load tables Activities and Features 
+ Load tables Activities and Features 
 Activity <- read.table(pathActivity) 
 Features <- read.table(pathFeatures) 
 
@@ -92,14 +92,14 @@ Features <- read.table(pathFeatures)
 names(X) <- Features$V2
 
 
-# Manipulate Labels and create dataset 
-## This block will filter the variables only to pick those that are mean and standard deviation variables, 
-## also it will rename the variables into a more descriptive description.
-## Also it will rename the variable for Subject and activity.
+## Manipulate Labels and create dataset 
+ This block will filter the variables only to pick those that are mean and standard deviation variables, 
+ also it will rename the variables into a more descriptive description.
+ Also it will rename the variable for Subject and activity.
 
 
-## 2.Extracts only the measurements on the mean and standard deviation for each measurement. 
-## Grab only variables that contain the word mean or std
+ 2.Extracts only the measurements on the mean and standard deviation for each measurement. 
+ Grab only variables that contain the word mean or std
 subsetNames <- names(X)[grep("mean\\(\\)|std\\(\\)", names(X))]
 
 make a subset of the data set taking only those variables in the previous step
@@ -124,12 +124,12 @@ names(x)<-gsub("BodyBody", "Body", names(x))
 Data <- cbind(Y,x,S)
 
 
-# Calculations and Output on the final dataset
-## This block calculates the average value based on the Subject and Activity using the aggregate function.
-## Finally stores a table with the tidy table. 
+## Calculations and Output on the final dataset
+ This block calculates the average value based on the Subject and Activity using the aggregate function.
+ Finally stores a table with the tidy table. 
 
 ## 5.From the data set in step 4, creates a second, independent tidy data set
-## with the average of each variable for each activity and each subject.
+ with the average of each variable for each activity and each subject.
 
 Data2 <- aggregate(.~Subject + Activity, Data, mean)
 Data2 <- Data2[order(Data2$Subject,Data2$Activity),]
